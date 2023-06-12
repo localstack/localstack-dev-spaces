@@ -1,0 +1,492 @@
+# generated from Helm chart https://github.com/localstack/helm-charts/tree/main/charts/localstack
+# via command "helm template localstack/localstack"
+
+# ---
+# # Source: localstack/templates/serviceaccount.yaml
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: release-name-localstack
+#   namespace: "default"
+#   labels:
+#     helm.sh/chart: localstack-0.5.5
+#     app.kubernetes.io/name: localstack
+#     app.kubernetes.io/instance: release-name
+#     app.kubernetes.io/version: "latest"
+#     app.kubernetes.io/managed-by: Helm
+#   annotations:
+---
+# Source: localstack/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: "default"
+  name: release-name-localstack
+  labels:
+    helm.sh/chart: localstack-0.5.5
+    app.kubernetes.io/name: localstack
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"]
+  verbs: ["*"]
+---
+# Source: localstack/templates/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: release-name-localstack
+  namespace: "default"
+  labels:
+    helm.sh/chart: localstack-0.5.5
+    app.kubernetes.io/name: localstack
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+subjects:
+# You can specify more than one "subject"
+- kind: ServiceAccount
+  name: release-name-localstack
+roleRef:
+  kind: Role
+  name: release-name-localstack
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: localstack/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-localstack
+  namespace: "default"
+  labels:
+    helm.sh/chart: localstack-0.5.5
+    app.kubernetes.io/name: localstack
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+
+spec:
+  type: NodePort
+  externalTrafficPolicy: ""
+  ports:
+    - name: edge
+      port: 4566
+      targetPort: 4566
+      nodePort: 31566
+    - name: "external-service-port-4510"
+      port: 4510
+      targetPort: "ext-svc-4510"
+    - name: "external-service-port-4511"
+      port: 4511
+      targetPort: "ext-svc-4511"
+    - name: "external-service-port-4512"
+      port: 4512
+      targetPort: "ext-svc-4512"
+    - name: "external-service-port-4513"
+      port: 4513
+      targetPort: "ext-svc-4513"
+    - name: "external-service-port-4514"
+      port: 4514
+      targetPort: "ext-svc-4514"
+    - name: "external-service-port-4515"
+      port: 4515
+      targetPort: "ext-svc-4515"
+    - name: "external-service-port-4516"
+      port: 4516
+      targetPort: "ext-svc-4516"
+    - name: "external-service-port-4517"
+      port: 4517
+      targetPort: "ext-svc-4517"
+    - name: "external-service-port-4518"
+      port: 4518
+      targetPort: "ext-svc-4518"
+    - name: "external-service-port-4519"
+      port: 4519
+      targetPort: "ext-svc-4519"
+    - name: "external-service-port-4520"
+      port: 4520
+      targetPort: "ext-svc-4520"
+    - name: "external-service-port-4521"
+      port: 4521
+      targetPort: "ext-svc-4521"
+    - name: "external-service-port-4522"
+      port: 4522
+      targetPort: "ext-svc-4522"
+    - name: "external-service-port-4523"
+      port: 4523
+      targetPort: "ext-svc-4523"
+    - name: "external-service-port-4524"
+      port: 4524
+      targetPort: "ext-svc-4524"
+    - name: "external-service-port-4525"
+      port: 4525
+      targetPort: "ext-svc-4525"
+    - name: "external-service-port-4526"
+      port: 4526
+      targetPort: "ext-svc-4526"
+    - name: "external-service-port-4527"
+      port: 4527
+      targetPort: "ext-svc-4527"
+    - name: "external-service-port-4528"
+      port: 4528
+      targetPort: "ext-svc-4528"
+    - name: "external-service-port-4529"
+      port: 4529
+      targetPort: "ext-svc-4529"
+    - name: "external-service-port-4530"
+      port: 4530
+      targetPort: "ext-svc-4530"
+    - name: "external-service-port-4531"
+      port: 4531
+      targetPort: "ext-svc-4531"
+    - name: "external-service-port-4532"
+      port: 4532
+      targetPort: "ext-svc-4532"
+    - name: "external-service-port-4533"
+      port: 4533
+      targetPort: "ext-svc-4533"
+    - name: "external-service-port-4534"
+      port: 4534
+      targetPort: "ext-svc-4534"
+    - name: "external-service-port-4535"
+      port: 4535
+      targetPort: "ext-svc-4535"
+    - name: "external-service-port-4536"
+      port: 4536
+      targetPort: "ext-svc-4536"
+    - name: "external-service-port-4537"
+      port: 4537
+      targetPort: "ext-svc-4537"
+    - name: "external-service-port-4538"
+      port: 4538
+      targetPort: "ext-svc-4538"
+    - name: "external-service-port-4539"
+      port: 4539
+      targetPort: "ext-svc-4539"
+    - name: "external-service-port-4540"
+      port: 4540
+      targetPort: "ext-svc-4540"
+    - name: "external-service-port-4541"
+      port: 4541
+      targetPort: "ext-svc-4541"
+    - name: "external-service-port-4542"
+      port: 4542
+      targetPort: "ext-svc-4542"
+    - name: "external-service-port-4543"
+      port: 4543
+      targetPort: "ext-svc-4543"
+    - name: "external-service-port-4544"
+      port: 4544
+      targetPort: "ext-svc-4544"
+    - name: "external-service-port-4545"
+      port: 4545
+      targetPort: "ext-svc-4545"
+    - name: "external-service-port-4546"
+      port: 4546
+      targetPort: "ext-svc-4546"
+    - name: "external-service-port-4547"
+      port: 4547
+      targetPort: "ext-svc-4547"
+    - name: "external-service-port-4548"
+      port: 4548
+      targetPort: "ext-svc-4548"
+    - name: "external-service-port-4549"
+      port: 4549
+      targetPort: "ext-svc-4549"
+    - name: "external-service-port-4550"
+      port: 4550
+      targetPort: "ext-svc-4550"
+    - name: "external-service-port-4551"
+      port: 4551
+      targetPort: "ext-svc-4551"
+    - name: "external-service-port-4552"
+      port: 4552
+      targetPort: "ext-svc-4552"
+    - name: "external-service-port-4553"
+      port: 4553
+      targetPort: "ext-svc-4553"
+    - name: "external-service-port-4554"
+      port: 4554
+      targetPort: "ext-svc-4554"
+    - name: "external-service-port-4555"
+      port: 4555
+      targetPort: "ext-svc-4555"
+    - name: "external-service-port-4556"
+      port: 4556
+      targetPort: "ext-svc-4556"
+    - name: "external-service-port-4557"
+      port: 4557
+      targetPort: "ext-svc-4557"
+    - name: "external-service-port-4558"
+      port: 4558
+      targetPort: "ext-svc-4558"
+    - name: "external-service-port-4559"
+      port: 4559
+      targetPort: "ext-svc-4559"
+  selector:
+    app.kubernetes.io/name: localstack
+    app.kubernetes.io/instance: release-name
+---
+# Source: localstack/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-localstack
+  namespace: "default"
+  labels:
+    helm.sh/chart: localstack-0.5.5
+    app.kubernetes.io/name: localstack
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+    # manually added - required by Dev Spaces
+    app: localstack-dev-spaces
+  annotations:
+
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      # app.kubernetes.io/name: localstack
+      # app.kubernetes.io/instance: release-name
+      # manually added - required by Dev Spaces
+      app: localstack-dev-spaces
+  template:
+    metadata:
+      labels:
+        # app.kubernetes.io/name: localstack
+        # app.kubernetes.io/instance: release-name
+        # manually added - required by Dev Spaces
+        app: localstack-dev-spaces
+    spec:
+      # serviceAccountName: release-name-localstack
+      securityContext:
+        {}
+      containers:
+        - name: localstack
+          securityContext:
+            {}
+          image: "localstack/localstack:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: edge
+              containerPort: 4566
+              protocol: TCP
+            - name: "ext-svc-4510"
+              containerPort: 4510
+              protocol: TCP
+            - name: "ext-svc-4511"
+              containerPort: 4511
+              protocol: TCP
+            - name: "ext-svc-4512"
+              containerPort: 4512
+              protocol: TCP
+            - name: "ext-svc-4513"
+              containerPort: 4513
+              protocol: TCP
+            - name: "ext-svc-4514"
+              containerPort: 4514
+              protocol: TCP
+            - name: "ext-svc-4515"
+              containerPort: 4515
+              protocol: TCP
+            - name: "ext-svc-4516"
+              containerPort: 4516
+              protocol: TCP
+            - name: "ext-svc-4517"
+              containerPort: 4517
+              protocol: TCP
+            - name: "ext-svc-4518"
+              containerPort: 4518
+              protocol: TCP
+            - name: "ext-svc-4519"
+              containerPort: 4519
+              protocol: TCP
+            - name: "ext-svc-4520"
+              containerPort: 4520
+              protocol: TCP
+            - name: "ext-svc-4521"
+              containerPort: 4521
+              protocol: TCP
+            - name: "ext-svc-4522"
+              containerPort: 4522
+              protocol: TCP
+            - name: "ext-svc-4523"
+              containerPort: 4523
+              protocol: TCP
+            - name: "ext-svc-4524"
+              containerPort: 4524
+              protocol: TCP
+            - name: "ext-svc-4525"
+              containerPort: 4525
+              protocol: TCP
+            - name: "ext-svc-4526"
+              containerPort: 4526
+              protocol: TCP
+            - name: "ext-svc-4527"
+              containerPort: 4527
+              protocol: TCP
+            - name: "ext-svc-4528"
+              containerPort: 4528
+              protocol: TCP
+            - name: "ext-svc-4529"
+              containerPort: 4529
+              protocol: TCP
+            - name: "ext-svc-4530"
+              containerPort: 4530
+              protocol: TCP
+            - name: "ext-svc-4531"
+              containerPort: 4531
+              protocol: TCP
+            - name: "ext-svc-4532"
+              containerPort: 4532
+              protocol: TCP
+            - name: "ext-svc-4533"
+              containerPort: 4533
+              protocol: TCP
+            - name: "ext-svc-4534"
+              containerPort: 4534
+              protocol: TCP
+            - name: "ext-svc-4535"
+              containerPort: 4535
+              protocol: TCP
+            - name: "ext-svc-4536"
+              containerPort: 4536
+              protocol: TCP
+            - name: "ext-svc-4537"
+              containerPort: 4537
+              protocol: TCP
+            - name: "ext-svc-4538"
+              containerPort: 4538
+              protocol: TCP
+            - name: "ext-svc-4539"
+              containerPort: 4539
+              protocol: TCP
+            - name: "ext-svc-4540"
+              containerPort: 4540
+              protocol: TCP
+            - name: "ext-svc-4541"
+              containerPort: 4541
+              protocol: TCP
+            - name: "ext-svc-4542"
+              containerPort: 4542
+              protocol: TCP
+            - name: "ext-svc-4543"
+              containerPort: 4543
+              protocol: TCP
+            - name: "ext-svc-4544"
+              containerPort: 4544
+              protocol: TCP
+            - name: "ext-svc-4545"
+              containerPort: 4545
+              protocol: TCP
+            - name: "ext-svc-4546"
+              containerPort: 4546
+              protocol: TCP
+            - name: "ext-svc-4547"
+              containerPort: 4547
+              protocol: TCP
+            - name: "ext-svc-4548"
+              containerPort: 4548
+              protocol: TCP
+            - name: "ext-svc-4549"
+              containerPort: 4549
+              protocol: TCP
+            - name: "ext-svc-4550"
+              containerPort: 4550
+              protocol: TCP
+            - name: "ext-svc-4551"
+              containerPort: 4551
+              protocol: TCP
+            - name: "ext-svc-4552"
+              containerPort: 4552
+              protocol: TCP
+            - name: "ext-svc-4553"
+              containerPort: 4553
+              protocol: TCP
+            - name: "ext-svc-4554"
+              containerPort: 4554
+              protocol: TCP
+            - name: "ext-svc-4555"
+              containerPort: 4555
+              protocol: TCP
+            - name: "ext-svc-4556"
+              containerPort: 4556
+              protocol: TCP
+            - name: "ext-svc-4557"
+              containerPort: 4557
+              protocol: TCP
+            - name: "ext-svc-4558"
+              containerPort: 4558
+              protocol: TCP
+            - name: "ext-svc-4559"
+              containerPort: 4559
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /_localstack/health
+              port: edge
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /_localstack/health
+              port: edge
+          resources:
+            {}
+          env:
+            - name: DEBUG
+              value: "1"
+            - name: EXTERNAL_SERVICE_PORTS_START
+              value: "4510"
+            - name: EXTERNAL_SERVICE_PORTS_END
+              value: "4560"
+            - name: LOCALSTACK_K8S_SERVICE_NAME
+              value: release-name-localstack
+            - name: LOCALSTACK_K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: LAMBDA_RUNTIME_EXECUTOR
+              value: "kubernetes"
+            - name: LAMBDA_K8S_IMAGE_PREFIX
+              value: "localstack/lambda-"
+            - name: LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT
+              value: "60"
+            - name: OVERRIDE_IN_DOCKER
+              value: "1"
+      volumes:
+---
+# Source: localstack/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "release-name-localstack-test-connection"
+  labels:
+    app.kubernetes.io/name: localstack
+    helm.sh/chart: localstack-0.5.5
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  containers:
+    - name: wget-edge
+      image: busybox
+      command: ['wget']
+      args: ['release-name-localstack:4566/health']
+  restartPolicy: Never

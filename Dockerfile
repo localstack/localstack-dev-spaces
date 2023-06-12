@@ -1,1 +1,1 @@
-FROM python:3
+FROM public.ecr.aws/localstack/localstack
