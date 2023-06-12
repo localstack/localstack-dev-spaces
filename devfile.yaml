@@ -1,0 +1,40 @@
+schemaVersion: 2.2.0
+metadata:
+  name: localstack
+  projectType: LocalStack
+  displayName: LocalStack
+components:
+  - name: image-build
+    image:
+      imageName: dev-test
+      dockerfile:
+        buildContext: .
+        uri: Dockerfile
+        rootRequired: false
+  - name: localstack
+    attributes:
+      deployment/replicas: 1
+      deployment/cpuRequest: 10m
+      deployment/memoryRequest: 50Mi
+      deployment/container-port: 4566
+    kubernetes:
+      uri: deploy.k8s.yaml
+      endpoints:
+      - name: http-4566
+        targetPort: 4566
+        path: /
+commands:
+  - id: build-image
+    apply:
+      component: image-build
+  - id: start-localstack
+    apply:
+      component: localstack
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - start-localstack
+      group:
+        kind: deploy
+        isDefault: true
