@@ -1,20 +1,20 @@
 # generated from Helm chart https://github.com/localstack/helm-charts/tree/main/charts/localstack
 # via command "helm template localstack/localstack"
 
----
-# Source: localstack/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: release-name-localstack
-  namespace: "default"
-  labels:
-    helm.sh/chart: localstack-0.5.5
-    app.kubernetes.io/name: localstack
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "latest"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
+# ---
+# # Source: localstack/templates/serviceaccount.yaml
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: release-name-localstack
+#   namespace: "default"
+#   labels:
+#     helm.sh/chart: localstack-0.5.5
+#     app.kubernetes.io/name: localstack
+#     app.kubernetes.io/instance: release-name
+#     app.kubernetes.io/version: "latest"
+#     app.kubernetes.io/managed-by: Helm
+#   annotations:
 ---
 # Source: localstack/templates/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -242,6 +242,8 @@ metadata:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "latest"
     app.kubernetes.io/managed-by: Helm
+    # manually added - required by Dev Spaces
+    app: localstack-dev-spaces
   annotations:
 
 spec:
@@ -250,15 +252,19 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: localstack
-      app.kubernetes.io/instance: release-name
+      # app.kubernetes.io/name: localstack
+      # app.kubernetes.io/instance: release-name
+      # manually added - required by Dev Spaces
+      app: localstack-dev-spaces
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: localstack
-        app.kubernetes.io/instance: release-name
+        # app.kubernetes.io/name: localstack
+        # app.kubernetes.io/instance: release-name
+        # manually added - required by Dev Spaces
+        app: localstack-dev-spaces
     spec:
-      serviceAccountName: release-name-localstack
+      # serviceAccountName: release-name-localstack
       securityContext:
         {}
       containers:
